@@ -7,6 +7,8 @@ module main.weatherapp {
     requires org.kordamp.bootstrapfx.core;
     requires io.github.cdimascio.dotenv.java;
     requires java.net.http;
+    requires org.json;
+    requires java.desktop;
 
     opens main.weatherapp to javafx.fxml;
     exports main.weatherapp;
