@@ -11,14 +11,15 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 
 public class ApiClass {
-    public static void apicall() {
+    HashMap<String,Object> apidata;
+    void ApiClass(String location) {
         Dotenv dotenv = Dotenv.load();
         String apiKey = dotenv.get("WEATHER_API_KEY");
-        String location = "Bangalore";
         String apiuri = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
         try {
             String response = makeGetRequest(apiuri);
             System.out.println("Response: "+ response);
+            Apidata(response);
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -30,9 +31,8 @@ public class ApiClass {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
-    public HashMap<String,Object> Apidata(String jsonresponse) {
-        HashMap<String,Object> apidata = new HashMap<>();
-
+    public void Apidata(String jsonresponse) {
+        apidata = new HashMap<>();
         JSONObject jsonObject = new JSONObject(jsonresponse);
 
         JSONObject main = jsonObject.getJSONObject("main");
@@ -49,11 +49,17 @@ public class ApiClass {
         JSONObject clouds = jsonObject.getJSONObject("clouds");
         apidata.put("clouds_all",clouds.getInt("all"));
 
-        JSONObject weather = jsonObject.getJSONObject("weather");
+        JSONObject weather = jsonObject.getJSONArray("weather").getJSONObject(0);
         apidata.put("main_weather",weather.getString("main"));
         apidata.put("main_description",weather.getString("description"));
         apidata.put("city",jsonObject.getString("name"));
+        apidata.put("timezone",jsonObject.getInt("timezone"));
 
+        JSONObject sys = jsonObject.getJSONObject("sys");
+        apidata.put("country",sys.getString("country"));
+
+    }
+    public  HashMap<String,Object> returnapidata() {
         return apidata;
     }
 }

@@ -62,14 +62,14 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="displaylbl" alignment="CENTER" layoutX="10.0" layoutY="62.0" prefHeight="51.0" prefWidth="205.0" text="Scattered Clouds" textFill="WHITE">
+                        <Label fx:id="weatherdeslbl" alignment="CENTER" layoutX="10.0" layoutY="62.0" prefHeight="51.0" prefWidth="205.0" text="Scattered Clouds" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="locationimg" layoutX="431.0" layoutY="10.0" prefHeight="45.0" prefWidth="45.0" styleClass="highlight">
+                  <Pane layoutX="431.0" layoutY="10.0" onMouseClicked="#locationset" prefHeight="45.0" prefWidth="45.0" styleClass="highlight">
                      <children>
                         <ImageView fitHeight="39.0" fitWidth="45.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                            <image>
