@@ -3,7 +3,7 @@
 }
 
 .mainPane {
-    -fx-background-color: linear-gradient(to bottom, #505050, #a9a9a9, #bdbbbb);
+    -fx-background-color: linear-gradient(to bottom, #B0C4DE, #D3D3D3, #A9A9A9);
     -fx-background-radius: 20;
 }
 

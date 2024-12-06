@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 import java.awt.event.MouseEvent;
@@ -15,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 
 import java.util.HashMap;
 
+import static main.weatherapp.MainApplication.*;
 
 
 public class MainAppController {
@@ -47,7 +49,7 @@ public class MainAppController {
     private Label templbl;
 
     @FXML
-    private ImageView weather_icon, close, minimise;
+    private ImageView weather_icon, close, minimise, windimg;
 
     @FXML
     private Label weatherlbl;
@@ -58,7 +60,7 @@ public class MainAppController {
     private HashMap<String, Object> weatherdata;
     private  ApiClass Api ;
     private String time;
-    private boolean day;
+    private static boolean day;
     private Image image;
 
     public void init(Stage stage) {
@@ -75,12 +77,19 @@ public class MainAppController {
     }
     @FXML
     public void locationset() {
-        weatherdata = new HashMap<>();
-        String location = "Chicago";
-        Api = new ApiClass();
-        Api.ApiClass(location);
-        weatherdata = Api.returnapidata();
-        setData();
+        try {
+            weatherdata = new HashMap<>();
+            locationstage();
+            String location = MainApplication.location;
+            if (!location.equals(null)) {
+            System.out.println(location);
+                Api = new ApiClass();
+                Api.ApiClass(location);
+                weatherdata = Api.returnapidata();
+                setData();}
+        } catch (Exception e) {
+            showerror("Invalid-Location","Invalid Location entered or something else has gone wrong");
+        }
     }
 
     public void setData() {
@@ -88,27 +97,30 @@ public class MainAppController {
             weatherlbl.setText(String.valueOf(weatherdata.get("main_weather")));
             locationlbl.setText(weatherdata.get("city") + ", " + weatherdata.get("country"));
             weatherdeslbl.setText(String.valueOf(weatherdata.get("main_description")));
-            ftemplbl.setText(String.valueOf(weatherdata.get("feels_temp")));
-            templbl.setText(String.valueOf(weatherdata.get("temp")));
-            maxtemplbl.setText(String.valueOf(weatherdata.get("temp_max")));
-            mintemplbl.setText(String.valueOf(weatherdata.get("temp_min")));
+            ftemplbl.setText(tempconverter((double) weatherdata.get("feels_temp")));
+            templbl.setText(tempconverter((double) weatherdata.get("temp")));
+            maxtemplbl.setText(tempconverter((double) weatherdata.get("temp_max")));
+            mintemplbl.setText(tempconverter((double) weatherdata.get("temp_min")));
             humlbl.setText(String.valueOf(weatherdata.get("humidity"))+"%");
             weatherbg(String.valueOf(weatherdata.get("main_weather")));
+            windlbl.setText(String.valueOf(weatherdata.get("wind_speed")));
+            windrotate((Double) weatherdata.get("wind_deg"));
 
             time = returndaynight((Integer) weatherdata.get("timezone"));
             timelbl.setText(time);
-            if(Integer.parseInt(time.substring(0,2)) < 7 || Integer.parseInt(time.substring(0,2)) > 19) {
+
+            if(Integer.parseInt(time.substring(0, 2)) < 7 || Integer.parseInt(time.substring(0,2)) > 19) {
                 day = false;
             }
             else {
                 day = true;
             }
+            System.out.println(day);
         }
 
     }
     public void weatherbg(String weather) {
-        day = false;
-        if (!day) {
+        if (day) {
             switch (weather) {
                 case "Thunderstorm":
                     image = new Image("file:src/main/resources/images/weathericons/thunderstormday.png");
@@ -123,7 +135,7 @@ public class MainAppController {
                 case "Snow":
                     image = new Image("file:src/main/resources/images/weathericons/snowday.png");
                     weather_icon.setImage(image);
-                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #ffffff, #d0e6f6, #a9cce3, #83b4d0);;");
+                    mainPane.setStyle("linear-gradient(to bottom, #0a0a0a, #1c1c1c, #3a3a3a, #87CEFA);");
                     break;
                 case "Clear":
                     image = new Image("file:src/main/resources/images/weathericons/clearday.png");
@@ -157,7 +169,7 @@ public class MainAppController {
                 case "Snow":
                     image = new Image("file:src/main/resources/images/weathericons/snownight.png");
                     weather_icon.setImage(image);
-                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #0a0a0a, #1c1c1c, #3a3a3a, #87CEFA);");
+                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #ffffff, #d0e6f6, #a9cce3, #83b4d0);");
                     break;
                 case "Clear":
                     image = new Image("file:src/main/resources/images/weathericons/clearnight.png");
@@ -183,5 +195,16 @@ public class MainAppController {
         ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant,zoneid);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return zonedDateTime.format(formatter);
+    }
+    String tempconverter(double temp) {
+         int temperature = (int) (temp - 273);
+         return String.valueOf(temperature)+"°C";
+    }
+    void windrotate(double degree) {
+        Rotate rotate = new Rotate();
+        rotate.setAngle(degree);
+        rotate.setPivotX(windimg.getFitWidth()/2);
+        rotate.setPivotY(windimg.getFitWidth()/2);
+        windimg.getTransforms().add(rotate);
     }
 }

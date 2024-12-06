@@ -10,6 +10,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 
+import static main.weatherapp.MainApplication.showerror;
+
 public class ApiClass {
     HashMap<String,Object> apidata;
     void ApiClass(String location) {
@@ -21,7 +23,7 @@ public class ApiClass {
             System.out.println("Response: "+ response);
             Apidata(response);
         } catch (Exception e) {
-            System.out.println("Error");
+            showerror("Exception", "Something went wrong :(");
         }
     }
 
