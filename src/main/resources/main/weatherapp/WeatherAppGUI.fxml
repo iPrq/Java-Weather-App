@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="468.0" prefWidth="704.0" stylesheets="@MainStyleSheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.weatherapp.MainAppController">
    <children>
-      <Pane fx:id="mainPane" prefHeight="469.0" prefWidth="711.0" styleClass="mainPane">
+      <Pane fx:id="mainPane" prefHeight="469.0" prefWidth="711.0" styleClass="mainPane" stylesheets="@MainStyleSheet.css">
          <children>
             <Pane layoutX="89.0" layoutY="49.0" prefHeight="299.0" prefWidth="533.0" styleClass="highlight">
                <children>
@@ -18,7 +18,7 @@
                      <children>
                         <ImageView fx:id="weather_icon" fitHeight="258.0" fitWidth="213.0" layoutX="33.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/cloud.png.png" />
+                              <Image url="@../../images/weathericons/cloudday.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -71,9 +71,9 @@
                   </Pane>
                   <Pane layoutX="431.0" layoutY="10.0" onMouseClicked="#locationset" prefHeight="45.0" prefWidth="45.0" styleClass="highlight">
                      <children>
-                        <ImageView fitHeight="39.0" fitWidth="45.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/location.png.png" />
+                              <Image url="@../../images/location.png" />
                            </image>
                         </ImageView>
                      </children></Pane>
@@ -107,22 +107,23 @@
                   </Pane>
                   <Pane layoutX="304.0" layoutY="10.0" prefHeight="67.0" prefWidth="135.0" styleClass="highlight">
                      <children>
-                        <Label alignment="CENTER" layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="119.0" styleClass="font" text="Min Temperature" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="119.0" styleClass="font" text="Min Max" textFill="WHITE">
                            <font>
                               <Font name="Roboto" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="mintemplbl" alignment="CENTER" layoutX="18.0" layoutY="33.0" prefHeight="21.0" prefWidth="97.0" text="18C" />
+                        <Label fx:id="mintemplbl" alignment="CENTER" layoutX="23.0" layoutY="33.0" prefHeight="21.0" prefWidth="52.0" text="18C" />
                      </children>
                   </Pane>
                   <Pane layoutX="449.0" layoutY="10.0" prefHeight="67.0" prefWidth="135.0" styleClass="highlight">
                      <children>
-                        <Label alignment="CENTER" layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="119.0" styleClass="font" text="Max Temperature" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="119.0" styleClass="font" text="Local Time" textFill="WHITE">
                            <font>
                               <Font name="Roboto" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="maxtemplbl" alignment="CENTER" layoutX="17.0" layoutY="32.0" prefHeight="21.0" prefWidth="97.0" text="27C" />
+                        <Label fx:id="maxtemplbl" alignment="CENTER" layoutX="-79.0" layoutY="33.0" prefHeight="21.0" prefWidth="30.0" text="27C" />
+                        <Label fx:id="timelbl" alignment="CENTER" layoutX="43.0" layoutY="31.0" prefHeight="21.0" prefWidth="52.0" text="Time" />
                      </children>
                   </Pane>
                </children></Pane>
