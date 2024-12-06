@@ -5,9 +5,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 import static main.weatherapp.MainApplication.showerror;
@@ -17,10 +19,10 @@ public class ApiClass {
     void ApiClass(String location) {
         Dotenv dotenv = Dotenv.load();
         String apiKey = dotenv.get("WEATHER_API_KEY");
-        String apiuri = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
+        String encodedLocation = URLEncoder.encode(location, StandardCharsets.UTF_8);
+        String apiuri = "http://api.openweathermap.org/data/2.5/weather?q=" + encodedLocation + "&appid=" + apiKey;
         try {
             String response = makeGetRequest(apiuri);
-            System.out.println("Response: "+ response);
             Apidata(response);
         } catch (Exception e) {
             showerror("Exception", "Something went wrong :(");

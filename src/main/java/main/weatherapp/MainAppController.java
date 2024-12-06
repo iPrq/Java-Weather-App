@@ -82,7 +82,6 @@ public class MainAppController {
             locationstage();
             String location = MainApplication.location;
             if (!location.equals(null)) {
-            System.out.println(location);
                 Api = new ApiClass();
                 Api.ApiClass(location);
                 weatherdata = Api.returnapidata();
@@ -115,7 +114,6 @@ public class MainAppController {
             else {
                 day = true;
             }
-            System.out.println(day);
         }
 
     }
@@ -145,7 +143,7 @@ public class MainAppController {
                 case "Clouds":
                     image = new Image("file:src/main/resources/images/weathericons/cloudday.png");
                     weather_icon.setImage(image);
-                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #B0C4DE, #D3D3D3, #A9A9A9);");
+                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #2c3e50, #3a3a3a, #1c1c1c);");
                     break;
                 default:
                     image = new Image("file:src/main/resources/images/weathericons/mistday.png");
@@ -154,7 +152,7 @@ public class MainAppController {
                     break;
             }
         }
-        else {
+        else if (!day) {
             switch (weather) {
                 case "Thunderstorm":
                     image = new Image("file:src/main/resources/images/weathericons/thunderstormnight.png");
@@ -179,12 +177,12 @@ public class MainAppController {
                 case "Clouds":
                     image = new Image("file:src/main/resources/images/weathericons/cloudnight.png");
                     weather_icon.setImage(image);
-                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #2c3e50, #3a3a3a, #1c1c1c);");
+                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #B0C4DE, #D3D3D3, #A9A9A9);;");
                     break;
                 default:
-                    image = new Image("file:src/main/resources/images/weathericons/mistday.png");
+                    image = new Image("file:src/main/resources/images/weathericons/mistnight.png");
                     weather_icon.setImage(image);
-                    mainPane.setStyle("linear-gradient(to bottom, #505050, #a9a9a9, #bdbbbb);");
+                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #505050, #a9a9a9, #bdbbbb);");
                     break;
                     }
         }
