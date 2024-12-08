@@ -11,7 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
-.env
+src/main/resources/.env
 
 ### Eclipse ###
 .apt_generated

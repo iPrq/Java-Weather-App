@@ -38,7 +38,7 @@ public class ApiClass {
         JSONObject main = jsonObject.getJSONObject("main");
         apidata.put("temp",main.getDouble("temp"));
         apidata.put("feels_temp",main.getDouble("feels_like"));
-        apidata.put("humidity",main.getDouble("feels_like"));
+        apidata.put("humidity",main.getDouble("humidity"));
         apidata.put("temp_min",main.getDouble("temp_min"));
         apidata.put("temp_max",main.getDouble("temp_max"));
 

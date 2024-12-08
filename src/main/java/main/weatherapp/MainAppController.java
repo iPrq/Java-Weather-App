@@ -8,13 +8,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import static main.weatherapp.MainApplication.*;
 
@@ -119,32 +119,32 @@ public class MainAppController {
         if (day) {
             switch (weather) {
                 case "Thunderstorm":
-                    image = new Image("file:src/main/resources/images/weathericons/thunderstormday.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/thunderstormday.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #0a0a0a, #3a3a3a)");
                     break;
                 case "Rain":
-                    image = new Image("file:src/main/resources/images/weathericons/rainyday.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/rainyday.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #647d8e, #3a506b, #2c3e50);");
                     break;
                 case "Snow":
-                    image = new Image("file:src/main/resources/images/weathericons/snowday.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/snowday.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("linear-gradient(to bottom, #0a0a0a, #1c1c1c, #3a3a3a, #87CEFA);");
                     break;
                 case "Clear":
-                    image = new Image("file:src/main/resources/images/weathericons/clearday.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/clearday.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #87CEFA, #00BFFF, #1E90FF);");
                     break;
                 case "Clouds":
-                    image = new Image("file:src/main/resources/images/weathericons/cloudday.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/cloudday.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #2c3e50, #3a3a3a, #1c1c1c);");
                     break;
                 default:
-                    image = new Image("file:src/main/resources/images/weathericons/mistday.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/mistday.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("linear-gradient(to bottom, #505050, #a9a9a9, #bdbbbb);");
                     break;
@@ -153,32 +153,32 @@ public class MainAppController {
         else if (!day) {
             switch (weather) {
                 case "Thunderstorm":
-                    image = new Image("file:src/main/resources/images/weathericons/thunderstormnight.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/thunderstormnight.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #0a0a0a, #3a3a3a)");
                     break;
                 case "Rain":
-                    image = new Image("file:src/main/resources/images/weathericons/rainynight.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/rainynight.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #1c1c1c, #2c3e50, #3a506b, #2c3e50);");
                     break;
                 case "Snow":
-                    image = new Image("file:src/main/resources/images/weathericons/snownight.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/snownight.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #ffffff, #d0e6f6, #a9cce3, #83b4d0);");
                     break;
                 case "Clear":
-                    image = new Image("file:src/main/resources/images/weathericons/clearnight.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/clearnight.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #000033, #000066, #000099, #0000cc);");
                     break;
                 case "Clouds":
-                    image = new Image("file:src/main/resources/images/weathericons/cloudnight.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/cloudnight.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #B0C4DE, #D3D3D3, #A9A9A9);;");
                     break;
                 default:
-                    image = new Image("file:src/main/resources/images/weathericons/mistnight.png");
+                    image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/mistnight.png")));
                     weather_icon.setImage(image);
                     mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #505050, #a9a9a9, #bdbbbb);");
                     break;
@@ -194,7 +194,7 @@ public class MainAppController {
     }
     String tempconverter(double temp) {
          int temperature = (int) (temp - 273);
-         return String.valueOf(temperature)+"°C";
+         return temperature +"°C";
     }
     void windrotate(double degree) {
         Rotate rotate = new Rotate();
