@@ -16,17 +16,13 @@ import static main.weatherapp.MainApplication.showerror;
 
 public class ApiClass {
     HashMap<String,Object> apidata;
-    void ApiClass(String location) {
+    void ApiClass(String location) throws IOException, InterruptedException {
         Dotenv dotenv = Dotenv.load();
         String apiKey = dotenv.get("WEATHER_API_KEY");
         String encodedLocation = URLEncoder.encode(location, StandardCharsets.UTF_8);
         String apiuri = "http://api.openweathermap.org/data/2.5/weather?q=" + encodedLocation + "&appid=" + apiKey;
-        try {
             String response = makeGetRequest(apiuri);
             Apidata(response);
-        } catch (Exception e) {
-            showerror("Exception", "Something went wrong :(");
-        }
     }
 
     public static String makeGetRequest(String apiuri) throws IOException, InterruptedException {

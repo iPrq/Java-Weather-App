@@ -104,16 +104,14 @@ public class MainAppController {
             weatherbg(String.valueOf(weatherdata.get("main_weather")));
             windlbl.setText(String.valueOf(weatherdata.get("wind_speed")));
             windrotate((Double) weatherdata.get("wind_deg"));
-
             time = returndaynight((Integer) weatherdata.get("timezone"));
-            timelbl.setText(time);
-
             if(Integer.parseInt(time.substring(0, 2)) < 7 || Integer.parseInt(time.substring(0,2)) > 19) {
                 day = false;
             }
             else {
                 day = true;
             }
+            timelbl.setText(time);
         }
 
     }
