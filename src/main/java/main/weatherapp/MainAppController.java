@@ -101,7 +101,6 @@ public class MainAppController {
             maxtemplbl.setText(tempconverter((double) weatherdata.get("temp_max")));
             mintemplbl.setText(tempconverter((double) weatherdata.get("temp_min")));
             humlbl.setText(String.valueOf(weatherdata.get("humidity"))+"%");
-            weatherbg(String.valueOf(weatherdata.get("main_weather")));
             windlbl.setText(String.valueOf(weatherdata.get("wind_speed")));
             windrotate((Double) weatherdata.get("wind_deg"));
             time = returndaynight((Integer) weatherdata.get("timezone"));
@@ -110,8 +109,10 @@ public class MainAppController {
             }
             else {
                 day = true;
+
             }
             timelbl.setText(time);
+            weatherbg(String.valueOf(weatherdata.get("main_weather")));
         }
 
     }
@@ -141,7 +142,7 @@ public class MainAppController {
                 case "Clouds":
                     image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/cloudday.png")));
                     weather_icon.setImage(image);
-                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #2c3e50, #3a3a3a, #1c1c1c);");
+                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #B0C4DE, #D3D3D3, #A9A9A9);");
                     break;
                 default:
                     image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/mistday.png")));
@@ -175,7 +176,7 @@ public class MainAppController {
                 case "Clouds":
                     image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/cloudnight.png")));
                     weather_icon.setImage(image);
-                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #B0C4DE, #D3D3D3, #A9A9A9);;");
+                    mainPane.setStyle("-fx-background-color: linear-gradient(to bottom, #2c3e50, #3a3a3a, #1c1c1c);");
                     break;
                 default:
                     image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weathericons/mistnight.png")));

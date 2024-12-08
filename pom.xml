@@ -65,6 +65,24 @@
   </dependencies>
 
   <build>
+      <resources>
+          <resource> <directory>src/main/resources/images</directory>
+              <includes>
+                  <include>**/*.png</include>
+                  <include>**/*.jpg</include>
+                  <!-- Add other image types if necessary -->
+              </includes>
+          </resource>
+            <resource>
+                <directory>src/main/resources/images/weathericons</directory>
+                    <includes>
+                          <include>**/*.png</include>
+                          <include>**/*.jpg</include>
+                          <!-- Add other image types if necessary -->
+                    </includes>
+            </resource>
+
+      </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -74,6 +92,7 @@
           <source>23</source>
           <target>23</target>
         </configuration>
+
       </plugin>
       <plugin>
         <groupId>org.openjfx</groupId>
